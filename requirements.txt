@@ -1,0 +1,5 @@
+# `argparse` is used to process command-line arguments
+argparse == 1.4.0
+
+# `rich` is used for formatting, tables, and a richer UI experience
+rich == 11.0.0
