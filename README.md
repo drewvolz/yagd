@@ -4,9 +4,7 @@ Designed for visualizing open pull requests across multiple repositories and use
 
 Backed by the [gh cli] for searching and filtering, and [rich] for displaying results.
 
-<div style="text-align:center">
-  <img src='./images/screenshot.png'/>
-</div>
+![screenshot of yagd output](./images/screenshot.png)
 
 ---
 
@@ -107,4 +105,3 @@ You may notice that there are multiple `requirements*.txt` files. They are split
 
 [gh cli]: https://cli.github.com
 [rich]: https://github.com/Textualize/rich
-![screenshot]: ./mages/screenshot.pngØ∏
