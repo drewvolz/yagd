@@ -53,8 +53,8 @@ def build_table(path: str, include_reviewed: bool, include_mine: bool,
 	table.box = None
 	table.show_footer = True
 	table.add_column('No.', style='green')
-	table.add_column('Title', justify="left")
-	table.add_column('Branch', style='cyan', justify="left")
+	table.add_column('Title')
+	table.add_column('Branch', style='cyan')
 	table.add_column('Author')
 
 	urls_query: Union[List[str], str] = ''
