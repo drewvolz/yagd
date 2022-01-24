@@ -24,8 +24,7 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	    '--repos',
 	    default=[],
 	    nargs='+',
-	    help='<Required> paths of the repos cloned on your machine',
-	    required=True)
+	    help='<Required> paths of the repos cloned on your machine')
 
 	parser.add_argument('-reviewed',
 	                    default=False,
@@ -62,9 +61,13 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	                    action='store_true',
 	                    help='enables debug logging')
 
+	parser.add_argument('--use-config',
+	                    action='store_true',
+	                    help='use a saved config environment')
+
 	args = parser.parse_args(sys_args)
 
-	if not args.repos:
+	if not args.repos and not args.use_config:
 		parser.print_help()
 		sys.exit(1)
 
@@ -77,16 +80,24 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	if args.debug:
 		inspect(args, methods=True)
 
-	fetch_pull_requests(
-	    console=console,
-	    repos=args.repos,
-	    include_reviewed=args.reviewed,
-	    include_mine=args.mine,
-	    show_urls=args.urls,
-	    authors=args.authors,
-	    show_drafts=args.drafts,
-	    show_headers=args.headers,
-	)
+	config = {
+	    'console': console,
+	    'repos': args.repos,
+	    'include_reviewed': args.reviewed,
+	    'include_mine': args.mine,
+	    'show_urls': args.urls,
+	    'authors': args.authors,
+	    'show_drafts': args.drafts,
+	    'show_headers': args.headers
+	}
+
+	if args.use_config:
+		from config import default
+		for key in config.keys():
+			if default.get(key):
+				config[key] = default.get(key)
+
+	fetch_pull_requests(**config)
 
 	return 0
 

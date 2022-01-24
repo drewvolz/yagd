@@ -27,7 +27,7 @@ $ python3 -m yagd --help
 ```
 
 ```shell script
-usage: yagd [-h] -r REPOS [REPOS ...] [-reviewed] [-mine] [-urls] [-authors AUTHORS [AUTHORS ...]] [-drafts] [-headers] [-debug]
+sage: yagd [-h] [-r REPOS [REPOS ...]] [-reviewed] [-mine] [-urls] [-authors AUTHORS [AUTHORS ...]] [-drafts] [-headers] [-debug] [--use-config]
 
 Visualize pull requests from multiple users.
 
@@ -43,6 +43,7 @@ optional arguments:
   -drafts               only show draft pull requests
   -headers              show column headers
   -debug                enables debug logging
+  --use-config          use a saved config environment
 ```
 
 The main CLI entry point; see `--help`.
@@ -71,6 +72,31 @@ $ python3 -m yagd --repos <path> -urls
 
 # complex usage
 $ python3 -m yagd -r <repo1> <repo2> -reviewed -mine -authors <user1> <user2> -drafts -urls
+
+# invoke using a saved config.py
+$ python3 -m yagd --use-config
+```
+
+## Using with a saved config
+
+In order to use a config file, you must:
+
+1. Rename config.example.py to config.py.
+2. Populate the fields you would like to pass.
+3. Invoke via `python3 -m yagd --use-config`
+
+A config file follows the following structure:
+
+```py
+default = {
+    'repos': [''],
+    'authors': [''],
+    'include_reviewed': False,
+    'include_mine': False,
+    'show_urls': False,
+    'show_drafts': False,
+    'show_headers': False
+}
 ```
 
 ## Misc. Scripts
