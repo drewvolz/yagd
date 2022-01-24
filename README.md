@@ -27,7 +27,7 @@ $ python3 -m yagd --help
 ```
 
 ```shell script
-usage: yagd [-h] -r REPOS [REPOS ...] [-reviewed] [-mine] [-urls] [-authors AUTHORS [AUTHORS ...]] [-drafts] [-debug]
+usage: yagd [-h] -r REPOS [REPOS ...] [-reviewed] [-mine] [-urls] [-authors AUTHORS [AUTHORS ...]] [-drafts] [-headers] [-debug]
 
 Visualize pull requests from multiple users.
 
@@ -41,6 +41,7 @@ optional arguments:
   -authors AUTHORS [AUTHORS ...]
                         show pull requests by a list of users
   -drafts               only show draft pull requests
+  -headers              show column headers
   -debug                enables debug logging
 ```
 

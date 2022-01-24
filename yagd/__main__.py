@@ -46,10 +46,10 @@ def build_filter_authors(authors: List[str]) -> Union[List[str], str]:
 
 
 def build_table(path: str, include_reviewed: bool, include_mine: bool,
-                show_urls: bool, authors: List[str],
-                show_drafts: bool) -> None:
+                show_urls: bool, authors: List[str], show_drafts: bool,
+                show_headers: bool) -> None:
 
-	table = Table(show_header=True, header_style='bold magenta')
+	table = Table(show_header=show_headers, header_style='bold magenta')
 	table.box = None
 	table.show_footer = True
 	table.add_column('No.', style='green')
@@ -103,13 +103,14 @@ def build_table(path: str, include_reviewed: bool, include_mine: bool,
 
 def fetch_pull_requests(repos: List[str], include_reviewed: bool,
                         include_mine: bool, show_urls: bool,
-                        authors: List[str], show_drafts: bool) -> None:
+                        authors: List[str], show_drafts: bool,
+                        show_headers: bool) -> None:
 	try:
 		with console.status(f'[bold green]Fetching pull requests…') as status:
 
 			while repos:
 				build_table(repos.pop(0), include_reviewed, include_mine,
-				            show_urls, authors, show_drafts)
+				            show_urls, authors, show_drafts, show_headers)
 	except Exception as e:
 		console.print(e, style='bold red')
 
@@ -155,6 +156,11 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	                    action='store_true',
 	                    help='only show draft pull requests')
 
+	parser.add_argument('-headers',
+	                    default=False,
+	                    action='store_true',
+	                    help='show column headers')
+
 	parser.add_argument('-debug',
 	                    default=False,
 	                    action='store_true',
@@ -180,7 +186,8 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	                    include_mine=args.mine,
 	                    show_urls=args.urls,
 	                    authors=args.authors,
-	                    show_drafts=args.drafts)
+	                    show_drafts=args.drafts,
+	                    show_headers=args.headers)
 
 	return 0
 
