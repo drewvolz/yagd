@@ -65,14 +65,14 @@ def build_table(path: str, include_reviewed: bool, include_mine: bool,
 		table.add_column('Url', style='blue')
 		urls_query = ['--json', 'url'] if show_urls else ''
 
-	if include_reviewed:
+	if not include_reviewed:
 		state.append('-reviewed-by:@me')
 
-	if include_mine:
+	if not include_mine:
 		state.append('-author:@me')
 
 	run = [
-	    'gh', 'pr', 'list', '--search', ''.join(state), '--json', 'number',
+	    'gh', 'pr', 'list', '--search', ' '.join(state), '--json', 'number',
 	    '--json', 'title', *urls_query, '--json', 'author', '--json',
 	    'headRefName', '--jq', f'(.[] {filtered_authors})'
 	]
