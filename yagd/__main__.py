@@ -49,7 +49,7 @@ def build_table(path: str, include_reviewed: bool, include_mine: bool,
                 show_urls: bool, authors: List[str],
                 show_drafts: bool) -> None:
 
-	table = Table(show_header=True, header_style="bold magenta")
+	table = Table(show_header=True, header_style='bold magenta')
 	table.box = None
 	table.show_footer = True
 	table.add_column('No.', style='green')
@@ -105,13 +105,13 @@ def fetch_pull_requests(repos: List[str], include_reviewed: bool,
                         include_mine: bool, show_urls: bool,
                         authors: List[str], show_drafts: bool) -> None:
 	try:
-		with console.status(f"[bold green]Fetching pull requests…") as status:
+		with console.status(f'[bold green]Fetching pull requests…') as status:
 
 			while repos:
 				build_table(repos.pop(0), include_reviewed, include_mine,
 				            show_urls, authors, show_drafts)
 	except Exception as e:
-		console.print(e, style="bold red")
+		console.print(e, style='bold red')
 
 
 def main(sys_args: Optional[List[str]] = None) -> int:
@@ -169,7 +169,7 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	if shutil.which('gh') is None:
 		console.print(
 		    'Error: Package `gh` is not installed. Run `brew install gh` or visit https://cli.github.com',
-		    style="bold red")
+		    style='bold red')
 		sys.exit(1)
 
 	if args.debug:
@@ -185,7 +185,7 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	return 0
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 	try:
 		sys.exit(main())
 	except KeyboardInterrupt:
