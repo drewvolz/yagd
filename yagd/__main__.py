@@ -95,7 +95,10 @@ def build_table(path: str, include_reviewed: bool, include_mine: bool,
 		for item in cleaned:
 			build_row(table, item, show_urls)
 
-		console.print(f'Found {len(table.rows)} results for {path}')
+		num_rows = len(table.rows)
+		inflection = 'result' if num_rows == 1 else 'results'
+
+		console.print(f'Found {num_rows} {inflection} for {path}')
 		console.print(table)
 	else:
 		console.print(f'Found 0 results for {path}\n')
