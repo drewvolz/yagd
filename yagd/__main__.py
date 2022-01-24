@@ -93,9 +93,10 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 
 	if args.use_config:
 		from config import default
-		for key in config.keys():
-			if default.get(key):
-				config[key] = default.get(key)
+		[
+		    config.update({key: default.get(key)}) for key in config.keys()
+		    if default.get(key)
+		]
 
 	fetch_pull_requests(**config)
 
