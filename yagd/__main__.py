@@ -17,7 +17,7 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 
 	parser = argparse.ArgumentParser(
 	    prog='yagd',
-	    description='Visualize pull requests from multiple users.')
+	    description='Visualize pull requests across multiple repos and users.')
 
 	parser.add_argument(
 	    '-r',

@@ -31,7 +31,7 @@ $ python3 -m yagd --help
 usage: yagd [-h] [-r REPOS [REPOS ...]] [-rv] [-m] [-u]
             [-a AUTHORS [AUTHORS ...]] [-d] [-hd] [-db] [-c]
 
-Visualize pull requests from multiple users.
+Visualize pull requests across multiple repos and users.
 
 optional arguments:
   -h, --help            show this help message and exit
