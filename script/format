@@ -4,4 +4,4 @@ root_dir="$(dirname $0)/.."
 
 set -x
 
-yapf -r $root_dir/*.py $root_dir/yagd -vv --in-place
+yapf -r $root_dir/*.py $root_dir/yagd $root_dir/script/*.py  -vv --in-place

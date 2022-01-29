@@ -26,6 +26,7 @@ Other commands:
 $ python3 -m yagd --help
 ```
 
+<!--- START USAGE -->
 ```shell script
 usage: yagd [-h] [-r REPOS [REPOS ...]] [-rv] [-m] [-u]
             [-a AUTHORS [AUTHORS ...]] [-d] [-hd] [-db] [-c]
@@ -46,6 +47,7 @@ optional arguments:
   -db, --debug          enables debug logging
   -c, --use-config      use a saved config environment
 ```
+<!--- END USAGE -->
 
 The main CLI entry point; see `--help`.
 
