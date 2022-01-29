@@ -26,42 +26,50 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	    nargs='+',
 	    help='<Required> paths of the repos cloned on your machine')
 
-	parser.add_argument('-reviewed',
+	parser.add_argument('-rv',
+	                    '--reviewed',
 	                    default=False,
 	                    action='store_true',
 	                    help='include pull requests you already reviewed')
 
-	parser.add_argument('-mine',
+	parser.add_argument('-m',
+	                    '--mine',
 	                    default=False,
 	                    action='store_true',
 	                    help='include pull requests created by you')
 
-	parser.add_argument('-urls',
+	parser.add_argument('-u',
+	                    '--urls',
 	                    default=False,
 	                    action='store_true',
 	                    help='show the pull request url')
 
-	parser.add_argument('-authors',
+	parser.add_argument('-a',
+	                    '--authors',
 	                    default=[],
 	                    nargs='+',
 	                    help='show pull requests by a list of users')
 
-	parser.add_argument('-drafts',
+	parser.add_argument('-d',
+	                    '--drafts',
 	                    default=False,
 	                    action='store_true',
 	                    help='only show draft pull requests')
 
-	parser.add_argument('-headers',
+	parser.add_argument('-hd',
+	                    '--headers',
 	                    default=False,
 	                    action='store_true',
 	                    help='show column headers')
 
-	parser.add_argument('-debug',
+	parser.add_argument('-db',
+	                    '--debug',
 	                    default=False,
 	                    action='store_true',
 	                    help='enables debug logging')
 
-	parser.add_argument('--use-config',
+	parser.add_argument('-c',
+	                    '--use-config',
 	                    action='store_true',
 	                    help='use a saved config environment')
 

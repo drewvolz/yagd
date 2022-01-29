@@ -27,7 +27,8 @@ $ python3 -m yagd --help
 ```
 
 ```shell script
-sage: yagd [-h] [-r REPOS [REPOS ...]] [-reviewed] [-mine] [-urls] [-authors AUTHORS [AUTHORS ...]] [-drafts] [-headers] [-debug] [--use-config]
+usage: yagd [-h] [-r REPOS [REPOS ...]] [-rv] [-m] [-u]
+            [-a AUTHORS [AUTHORS ...]] [-d] [-hd] [-db] [-c]
 
 Visualize pull requests from multiple users.
 
@@ -35,15 +36,15 @@ optional arguments:
   -h, --help            show this help message and exit
   -r REPOS [REPOS ...], --repos REPOS [REPOS ...]
                         <Required> paths of the repos cloned on your machine
-  -reviewed             include pull requests you already reviewed
-  -mine                 include pull requests created by you
-  -urls                 show the pull request url
-  -authors AUTHORS [AUTHORS ...]
+  -rv, --reviewed       include pull requests you already reviewed
+  -m, --mine            include pull requests created by you
+  -u, --urls            show the pull request url
+  -a AUTHORS [AUTHORS ...], --authors AUTHORS [AUTHORS ...]
                         show pull requests by a list of users
-  -drafts               only show draft pull requests
-  -headers              show column headers
-  -debug                enables debug logging
-  --use-config          use a saved config environment
+  -d, --drafts          only show draft pull requests
+  -hd, --headers        show column headers
+  -db, --debug          enables debug logging
+  -c, --use-config      use a saved config environment
 ```
 
 The main CLI entry point; see `--help`.
@@ -55,23 +56,23 @@ Basic usage is as follows:
 $ python3 -m yagd --repos <path1> <path2>
 
 # query a single repo, filtered by a set of authors
-$ python3 -m yagd --repos <path> -authors <user1> <user2>
+$ python3 -m yagd --repos <path> --authors <user1> <user2>
 
 # unfilter requests you have previously reviewed
-$ python3 -m yagd -repos <path> -reviewed
+$ python3 -m yagd -repos <path> --reviewed
 
 # unfilter requests that you have authored
 # note: -mine is overriden by -authors
-$ python3 -m yagd --repos <path> -mine
+$ python3 -m yagd --repos <path> --mine
 
 # limit the scope to only draft requests
-$ python3 -m yagd --repos <path> -drafts
+$ python3 -m yagd --repos <path> --drafts
 
 # add the pull request url to the results
-$ python3 -m yagd --repos <path> -urls
+$ python3 -m yagd --repos <path> --urls
 
 # complex usage
-$ python3 -m yagd -r <repo1> <repo2> -reviewed -mine -authors <user1> <user2> -drafts -urls
+$ python3 -m yagd -r <repo1> <repo2> -rv -m -a <user1> <user2> -d -u
 
 # invoke using a saved config.py
 $ python3 -m yagd --use-config
