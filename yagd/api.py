@@ -35,10 +35,10 @@ def build_row(table: Table, item: str, show_urls: bool, show_branch: bool,
 	table.add_row(*row)
 
 
-def fetch_authors(authors_from_teams: List[dict[str, str]]) -> List[str]:
+def fetch_authors(filtered_authors: List[dict[str, str]]) -> List[str]:
 	member_names = []
 
-	for pair in authors_from_teams:
+	for pair in filtered_authors:
 		org = pair['org']
 		team = pair['team']
 
@@ -85,7 +85,7 @@ def build_filter_authors(
 
 def build_table(console: Console, path: str, include_reviewed: bool,
                 include_mine: bool, show_urls: bool, authors: List[str],
-                authors_from_teams: List[dict[str, str]], show_drafts: bool,
+                filtered_authors: Union[List[str], str], show_drafts: bool,
                 show_headers: bool, show_branch: bool,
                 show_author: bool) -> None:
 
@@ -103,7 +103,6 @@ def build_table(console: Console, path: str, include_reviewed: bool,
 
 	urls_query: Union[List[str], str] = ''
 	state = ['state:open']
-	filtered_authors = build_filter_authors(authors, authors_from_teams)
 
 	if show_urls:
 		table.add_column('Url', style='blue')
@@ -157,12 +156,14 @@ def fetch_pull_requests(console: Console, repos: List[str],
                         show_drafts: bool, show_headers: bool,
                         show_branch: bool, show_author: bool) -> None:
 	try:
+		filtered_authors = build_filter_authors(authors, authors_from_teams)
+
 		with console.status(f'[bold green]Fetching pull requests…') as status:
 
 			while repos:
 				build_table(console, repos.pop(0), include_reviewed,
-				            include_mine, show_urls, authors,
-				            authors_from_teams, show_drafts, show_headers,
-				            show_branch, show_author)
+				            include_mine, show_urls, authors, filtered_authors,
+				            show_drafts, show_headers, show_branch,
+				            show_author)
 	except Exception as e:
 		console.print(e, style='bold red')
