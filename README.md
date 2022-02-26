@@ -98,24 +98,54 @@ $ python3 -m yagd --use-config
 
 ## Using with a saved config
 
+You may set a configuration to be used in place of passing arguments.
+
 In order to use a config file, you must:
 
 1. Rename config.example.py to config.py.
 2. Populate the fields you would like to pass.
 3. Invoke via `python3 -m yagd --use-config`
 
-A config file follows the following structure:
+An example config file follows the following structure:
 
 ```py
 default = {
-    'repos': [''],
-    'authors': [''],
+    # paths to locally cloned git repositories
+    'repos': [
+        '../aao-react-native',
+        '../carls',
+        '../ccc-server',
+    ],
+
+    # github users you'd like to see a list of PRs from
+    'authors': ['hawkrives', 'rye', 'drewvolz'],
+
+    # optionally you can filter by github org+team
+    # by providing the below data.
+    #
+    # e.g. github.com/orgs/{org}/teams/{team}
+    #
+    # an additional request is made via `gh api`
+    # to query for the usernames of these teams
+    # making this config dynamic, whereas setting
+    # the authors would be static.
+    'authors_from_teams': [
+        {'org': 'StoDevX', 'team': 'all-about-olaf'},
+        {'org': 'carls-app', 'team': 'carls'},
+    ],
+
+    # feel free to make your output as verbose as
+    # you need by enabling more of these flags.
     'include_reviewed': False,
     'include_mine': False,
-    'show_urls': False,
+    'show_urls': True,
+    # show drafts will *only* show drafts
     'show_drafts': False,
-    'show_headers': False
+    'show_headers': False,
+    'show_branch': False,
+    'show_author': False,
 }
+
 ```
 
 ## Misc. Scripts
