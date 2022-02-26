@@ -50,6 +50,12 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	                    nargs='+',
 	                    help='show pull requests by a list of users')
 
+	parser.add_argument('-at',
+	                    '--authors-from-teams',
+	                    default=[],
+	                    nargs='+',
+	                    help='fetch authors from a list of github teams')
+
 	parser.add_argument('-d',
 	                    '--drafts',
 	                    default=False,
@@ -61,6 +67,18 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	                    default=False,
 	                    action='store_true',
 	                    help='show column headers')
+
+	parser.add_argument('-sb',
+	                    '--show-branch',
+	                    default=False,
+	                    action='store_true',
+	                    help='show the pull request branch')
+
+	parser.add_argument('-sa',
+	                    '--show-author',
+	                    default=False,
+	                    action='store_true',
+	                    help='show the pull request author name')
 
 	parser.add_argument('-db',
 	                    '--debug',
@@ -85,9 +103,6 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 		    style='bold red')
 		sys.exit(1)
 
-	if args.debug:
-		inspect(args, methods=True)
-
 	config = {
 	    'console': console,
 	    'repos': args.repos,
@@ -95,8 +110,11 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 	    'include_mine': args.mine,
 	    'show_urls': args.urls,
 	    'authors': args.authors,
+	    'authors_from_teams': args.authors_from_teams,
 	    'show_drafts': args.drafts,
-	    'show_headers': args.headers
+	    'show_headers': args.headers,
+	    'show_branch': args.show_branch,
+	    'show_author': args.show_author,
 	}
 
 	if args.use_config:
@@ -105,6 +123,10 @@ def main(sys_args: Optional[List[str]] = None) -> int:
 		    config.update({key: default.get(key)}) for key in config.keys()
 		    if default.get(key)
 		]
+
+		if args.debug:
+			console.print('debug config', style='bold green')
+			inspect(config, methods=False)
 
 	fetch_pull_requests(**config)
 

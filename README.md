@@ -29,7 +29,9 @@ $ python3 -m yagd --help
 <!--- START USAGE -->
 ```shell script
 usage: yagd [-h] [-r REPOS [REPOS ...]] [-rv] [-m] [-u]
-            [-a AUTHORS [AUTHORS ...]] [-d] [-hd] [-db] [-c]
+            [-a AUTHORS [AUTHORS ...]]
+            [-at AUTHORS_FROM_TEAMS [AUTHORS_FROM_TEAMS ...]] [-d] [-hd] [-sb]
+            [-sa] [-db] [-c]
 
 Visualize pull requests across multiple repos and users.
 
@@ -42,8 +44,12 @@ optional arguments:
   -u, --urls            show the pull request url
   -a AUTHORS [AUTHORS ...], --authors AUTHORS [AUTHORS ...]
                         show pull requests by a list of users
+  -at AUTHORS_FROM_TEAMS [AUTHORS_FROM_TEAMS ...], --authors-from-teams AUTHORS_FROM_TEAMS [AUTHORS_FROM_TEAMS ...]
+                        fetch authors from a list of github teams
   -d, --drafts          only show draft pull requests
   -hd, --headers        show column headers
+  -sb, --show-branch    show the pull request branch
+  -sa, --show-author    show the pull request author name
   -db, --debug          enables debug logging
   -c, --use-config      use a saved config environment
 ```
@@ -59,6 +65,10 @@ $ python3 -m yagd --repos <path1> <path2>
 
 # query a single repo, filtered by a set of authors
 $ python3 -m yagd --repos <path> --authors <user1> <user2>
+
+# query from a list of authors from the github api
+# note: the team member names are fetched for you.
+TODO: document this for CLI. Config supports it.
 
 # unfilter requests you have previously reviewed
 $ python3 -m yagd -repos <path> --reviewed
