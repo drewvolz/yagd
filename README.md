@@ -67,8 +67,16 @@ $ python3 -m yagd --repos <path1> <path2>
 $ python3 -m yagd --repos <path> --authors <user1> <user2>
 
 # query from a list of authors from the github api
-# note: the team member names are fetched for you.
-TODO: document this for CLI. Config supports it.
+# note: the usernames of the team member are fetched for you
+# given you provide the organization and team ids:
+# e.g. github.com/orgs/{org-name}/teams/{team-name}
+The config variant is formatted like so in `config.py`:
+
+```json
+authors-from-teams: [
+  {'org': '<org-name>', 'team': '<team-name>'}
+]
+``
 
 # unfilter requests you have previously reviewed
 $ python3 -m yagd -repos <path> --reviewed

@@ -1,8 +1,8 @@
 # set a configuration to be used in place of passing arguments
 default = {
     'repos': [''],
-    'authors': [''],
-    'authors_from_teams': [{'', ''}],  # {org, team}]
+    'authors': [],
+    'authors_from_teams': [],
     'include_reviewed': False,
     'include_mine': False,
     'show_urls': False,

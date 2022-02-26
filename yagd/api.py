@@ -39,13 +39,19 @@ def fetch_authors(authors_from_teams: List[dict[str, str]]) -> List[str]:
 	member_names = []
 
 	for pair in authors_from_teams:
-		org, team = pair
+		org = pair['org']
+		team = pair['team']
+
 		run = ['gh', 'api', f'/orgs/{org}/teams/{team}/members']
 
 		process = subprocess.Popen(run,
 		                           stdout=subprocess.PIPE,
 		                           stderr=subprocess.PIPE)
 		output, errors = process.communicate()
+
+		if (errors):
+			print(f'Error in trying to run `{" ".join(run)}`')
+			print(errors.decode('utf-8'))
 
 		if len(output):
 			member_names = [
