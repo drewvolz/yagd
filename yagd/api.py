@@ -131,6 +131,10 @@ def build_table(console: Console, path: str, include_reviewed: bool,
 
 	output, errors = process.communicate()
 
+	if (errors):
+		print(f'Error in trying to run `{" ".join(run)}`')
+		print(errors.decode('utf-8'))
+
 	if len(output):
 		cleaned = [
 		    v for v in json.loads(json.dumps(output.decode())).split('\n') if v
