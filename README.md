@@ -72,11 +72,9 @@ $ python3 -m yagd --repos <path> --authors <user1> <user2>
 # e.g. github.com/orgs/{org-name}/teams/{team-name}
 The config variant is formatted like so in `config.py`:
 
-```json
 authors-from-teams: [
   {'org': '<org-name>', 'team': '<team-name>'}
 ]
-``
 
 # unfilter requests you have previously reviewed
 $ python3 -m yagd -repos <path> --reviewed
