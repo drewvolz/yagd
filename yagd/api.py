@@ -74,13 +74,12 @@ def build_filter_authors(
 	author_names = []
 
 	if len(authors):
-		author_names = authors
+		author_names.extend(authors)
 
 	if len(authors_from_teams):
-		member_names = fetch_authors(authors_from_teams)
-		author_names = [name for name in member_names]
+		author_names.extend(fetch_authors(authors_from_teams))
 
-	return build_author_query_string(author_names)
+	return build_author_query_string(list(set(author_names)))
 
 
 def build_table(console: Console, path: str, include_reviewed: bool,
